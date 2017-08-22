@@ -1,0 +1,9 @@
+body {
+  display: flex;
+  flex-direction: column;
+  max-width: 20em;
+  margin: 0 auto;
+}
+body > * {
+  margin-top: 1em;
+}
