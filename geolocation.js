@@ -26,19 +26,19 @@ button.addEventListener("click", function (event) {
     window.navigator.geolocation.clearWatch(watchId);
     watchId = window.navigator.geolocation.watchPosition(function (position) {
       var coords = position.coords;
-      var altitude = coords.altitude || "&ndash;";
-      var altitudeAccuracy = coords.altitudeAccuracy || "&ndash;";
-      var accuracy = coords.accuracy || "&ndash;";
-      var latitude = coords.latitude || "&ndash;";
-      var longitude = coords.longitude || "&ndash;";
-      var heading = coords.heading || "&ndash;";
-      var speed = coords.speed || "&ndash;";
-      var timestamp = position.timestamp || "&ndash;";
-      document.getElementById("coords").innerHTML = latitude.toLocaleString() + "&deg;" + " / " + longitude.toLocaleString() + "&deg;" + " &pm; " + accuracy.toLocaleString() + "m";
-      document.getElementById("altitude").innerHTML = altitude.toLocaleString() + " &pm; " + altitudeAccuracy.toLocaleString() + "m";
-      document.getElementById("heading").innerHTML = heading.toLocaleString();
-      document.getElementById("speed").innerHTML = speed.toLocaleString();
-      document.getElementById("timestamp").innerHTML = new Date(timestamp).toLocaleString();
+      var altitude = coords.altitude;
+      var altitudeAccuracy = coords.altitudeAccuracy;
+      var accuracy = coords.accuracy;
+      var latitude = coords.latitude;
+      var longitude = coords.longitude;
+      var heading = coords.heading;
+      var speed = coords.speed;
+      var timestamp = position.timestamp;
+      document.getElementById("coords").innerHTML = latitude == null || longitude == null ? "&ndash;" : latitude.toFixed(5) + "&deg;" + " / " + longitude.toFixed(5) + "&deg;" + " &pm; " + (accuracy == null ? "&ndash;" : accuracy.toFixed(3) + "m");
+      document.getElementById("altitude").innerHTML = altitude == null ? "&ndash;" : altitude.toFixed(1) + " &pm; " + (altitudeAccuracy == null ? "&ndash;" : altitudeAccuracy.toFixed(1) + "m");
+      document.getElementById("heading").innerHTML = heading == null ? "&ndash;" : heading.toFixed(1) + "&deg;";
+      document.getElementById("speed").innerHTML = speed == null ? "&ndash;" : speed.toFixed(3) + "m/s";
+      document.getElementById("timestamp").innerHTML = timestamp == null ? "&ndash;" : new Date(timestamp).toISOString();
     }, function (error) {
       var code = function (c) {
         if (c === 1) {
