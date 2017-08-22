@@ -1,34 +1,13 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en" manifest="geolocation.appcache">
 <head>
-<script>
-
-window.navigator.geolocation.watchPosition(function (position) {
-  var coords = position.coords;
-  var altitude = coords.altitude || "&ndash;";
-  var altitudeAccuracy = coords.altitudeAccuracy || "&ndash;";
-  var accuracy = coords.accuracy || "&ndash;";
-  var latitude = coords.latitude || "&ndash;";
-  var longitude = coords.longitude || "&ndash;";
-  var heading = coords.heading || "&ndash;";
-  var speed = coords.speed || "&ndash;";
-  var timestamp = position.timestamp || "&ndash;";
-  document.getElementById("coords").innerHTML = latitude.toLocaleString() + "&deg;" + " / " + longitude.toLocaleString() + "&deg;" + " &pm; " + accuracy.toLocaleString() + "m";
-  document.getElementById("altitude").innerHTML = altitude.toLocaleString() + " &pm; " + altitudeAccuracy.toLocaleString() + "m";
-  document.getElementById("heading").innerHTML = heading.toLocaleString();
-  document.getElementById("speed").innerHTML = speed.toLocaleString();
-  document.getElementById("timestamp").innerHTML = new Date(timestamp).toLocaleString();
-}, function (error) {
-  document.getElementById("error").innerHTML = error.code + ":" + error.message;
-}, {
-  enableHighAccuracy: true,
-  timeout: 1073741824,
-  maximumAge: 0
-});
-
-</script>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script src="geolocation.js" defer></script>
+<link href="geolocation.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
+  <button type="button" id="button">Go!</button>
   <div>Coords: <data id="coords"></data></div>
   <div>Altitude: <data id="altitude"></data></div>
   <div>Heading: <data id="heading"></data></div>
